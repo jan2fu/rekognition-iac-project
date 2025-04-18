@@ -1,0 +1,6 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Treat Terraform files as text (normalize line endings)
+*.tf text
+*.hcl text

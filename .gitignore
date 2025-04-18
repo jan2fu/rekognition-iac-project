@@ -1,0 +1,10 @@
+# .gitignore
+.terraform/
+*.exe
+*.log
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+*.swp
+.env
