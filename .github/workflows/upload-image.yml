@@ -24,9 +24,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/github-actions-role
+          role-to-assume: arn:aws:iam::515966535961:role/github-actions-role
           aws-region: us-east-1
 
       - name: Upload Image to S3
         run: |
-          aws s3 sync ./images/ s3://${{ terraform output image_bucket_name }}/images/
+          aws s3 sync ./images s3://rekognition-image-upload-bucket1
