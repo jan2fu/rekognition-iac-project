@@ -5,8 +5,10 @@
 name: Upload Image to S3
 on:
     push:
-        paths:
-            - 'images/**'
+        branches:
+          - main 
+        # paths:
+            # - 'images/**'
 
 
 jobs:
