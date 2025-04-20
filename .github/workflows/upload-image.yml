@@ -1,0 +1,30 @@
+# This GitHub Actions workflow uploads images to an S3 bucket whenever there is a push to the 'images' directory.
+# It uses AWS credentials configured through an IAM role that is assumed using OIDC.
+# The workflow is triggered on pushes to the 'images' directory.
+# The images are synced to the S3 bucket specified in the Terraform output.
+name: Upload Image to S3
+on:
+  push:
+    paths:
+      - 'images/**'
+
+      
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/github-actions-role
+          aws-region: us-east-1
+
+      - name: Upload Image to S3
+        run: |
+          aws s3 sync ./images/ s3://${{ terraform output image_bucket_name }}/images/
