@@ -4,11 +4,11 @@
 # The images are synced to the S3 bucket specified in the Terraform output.
 name: Upload Image to S3
 on:
-  push:
-    paths:
-      - 'images/**'
+    push:
+        paths:
+            - 'images/**'
 
-      
+
 jobs:
   upload:
     runs-on: ubuntu-latest
