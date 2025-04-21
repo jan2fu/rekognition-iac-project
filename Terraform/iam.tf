@@ -32,7 +32,7 @@ resource "aws_iam_role" "github_actions_role" {
       }, # GitHub OIDC provider 
       Condition = {
         StringLike = {
-          "token.actions.githubusercontent.com:sub" = "repo:your-github-username/aws-rekognition-pipeline:*"
+          "token.actions.githubusercontent.com:sub" = "https://github.com/jan2fu/rekognition-iac-project:*"
         }
       }
     }]
