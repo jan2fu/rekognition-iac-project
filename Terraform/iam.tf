@@ -1,3 +1,7 @@
+# This file contains the IAM roles and policies for AWS Lambda and GitHub Actions.
+# It sets up the necessary permissions for Lambda to access AWS Rekognition and DynamoDB,
+# and for GitHub Actions to access S3 for deployment purposes.
+
 # Role for Lambda
 resource "aws_iam_role" "lambda_role" {
   name = "lambda-rekognition-role"
@@ -23,9 +27,9 @@ resource "aws_iam_role" "github_actions_role" {
     Statement = [{
       Action = "sts:AssumeRoleWithWebIdentity",
       Effect = "Allow",
-      Principal = {
-        Federated = "arn:aws:iam::YOUR_AWS_ACCOUNT_ID:oidc-provider/token.actions.githubusercontent.com"
-      },
+      Principal = { 
+        Federated = "arn:aws:iam::515966535961:oidc-provider/token.actions.githubusercontent.com"
+      }, # GitHub OIDC provider 
       Condition = {
         StringLike = {
           "token.actions.githubusercontent.com:sub" = "repo:your-github-username/aws-rekognition-pipeline:*"
